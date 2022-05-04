@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+
+<div class="row  mt-5">
+<div class="col map_france">
+
+    <svg  width="597.6" height="670.7">
+<g>
+{% for region in regions %}
+    <a xlink:href="{{ path('single', {'id': region.id}) }}" xlink:title="{{ region.name }}">
+    <path title="{{ region.name }}" fill="#0C0C0C"  d="{{ region.border }}"/>
+    </a>
+    {% endfor %}
+</g>
+</svg>
+</div>
+        <div class="col">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    Choisissez une région
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    {% for region in regions %}
+                        <li><a class="dropdown-item"
+                               href="{{ path('single', {'id': region.id}) }}">{{ region.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}
